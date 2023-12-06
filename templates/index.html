@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGauge</title>
+</head>
+<body>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <label for="inp_file">Upload Text File of WhatsApp Chat</label>
+        <input type="file" id="inp_file" name="inp_file" accept=".txt">
+        <input type="submit" value="Upload">
+    </form>
+    <div>
+        {{ total_messages }}
+        {{ total_media_messages }}
+        {{ total_emojis }}
+        {{ total_links }}
+    </div>
+</body>
+</html>
