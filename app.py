@@ -1,14 +1,7 @@
 from processing import *
 import numpy as np
-import plotly.express as px
-import collections
 
-chat_file_path = 'WhatsApp Chat with Siddharth.txt'
-combined_chat = combine_lines(chat_file_path)
-df = parse_messages(combined_chat)
-df['emoji'] = df["Message"].apply(get_emojis)
-df['url'] = df["Message"].apply(get_urls)
-df['urlcount'] = df['url'].apply(get_url_count)
+df = prepare_df('WhatsApp Chat with Siddharth.txt')
 
 # General Stats
 print(f'Total Messages: {df.shape[0]}')
@@ -20,12 +13,7 @@ total_links = np.sum(df.urlcount)
 print(f"Number of Link Shared: {total_links}")
 
 # Individual Stats
-media_messages_df = df[df['Message'] == '<Media omitted>']
-messages_df = df.drop(media_messages_df.index)
-messages_df['Letter_Count'] = messages_df['Message'].apply(lambda s : len(s))
-messages_df['Word_Count'] = messages_df['Message'].apply(lambda s : len(s.split(' ')))
-messages_df["MessageCount"] = 1
-
+media_messages_df, messages_df = get_data(df)
 users = df['Author'].unique().tolist()
 for i in range(len(users)):
     print("--------------------------------------------------------------------------------")
@@ -42,13 +30,12 @@ for i in range(len(users)):
     print('Links Sent:', links)
 
 # Emoji Graph
-total_emojis_list = list(set([a for b in messages_df.emoji for a in b]))
-total_emojis = len(total_emojis_list)
+fig = create_emoji_graph(messages_df)
 
-total_emojis_list = list([a for b in messages_df.emoji for a in b])
-emoji_dict = dict(collections.Counter(total_emojis_list))
-emoji_dict = sorted(emoji_dict.items(), key=lambda x: x[1], reverse=True)
-emoji_df = pd.DataFrame(emoji_dict, columns=['emoji', 'count'])
-fig = px.pie(emoji_df, values='count', names='emoji')
-fig.update_traces(textposition='inside', textinfo='percent+label')
-fig.show()
+# General WordCloud
+create_wordcloud(messages_df, "General").show()
+
+# Individual WordCloud
+for i in range(len(users)):
+    dummy_df = messages_df[messages_df['Author'] == users[i]]
+    create_wordcloud(dummy_df, users[i]).show()

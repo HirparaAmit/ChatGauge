@@ -1,6 +1,12 @@
 import re
 import pandas as pd
 import emoji
+import matplotlib.pyplot as plt
+import plotly.express as px
+import collections
+from wordcloud import WordCloud, STOPWORDS
+import base64
+from io import BytesIO
 
 def combine_lines(chat_file_path):
     combined_lines = []
@@ -38,6 +44,24 @@ def parse_messages(input_strings):
 
     return pd.DataFrame(data)
 
+# function to prepare dataframe
+def prepare_df(file):
+    combined_chat = combine_lines(file)
+    df = parse_messages(combined_chat)
+    df['emoji'] = df["Message"].apply(get_emojis)
+    df['url'] = df["Message"].apply(get_urls)
+    df['urlcount'] = df['url'].apply(get_url_count)
+    return df
+
+# function to get more data from dataframe
+def get_data(df):
+    media_messages_df = df[df['Message'] == '<Media omitted>']
+    messages_df = df.drop(media_messages_df.index)
+    messages_df['Letter_Count'] = messages_df['Message'].apply(lambda s : len(s))
+    messages_df['Word_Count'] = messages_df['Message'].apply(lambda s : len(s.split(' ')))
+    messages_df["MessageCount"] = 1
+    return media_messages_df, messages_df
+
 # function to find emojis
 def get_emojis(text):
     lst = []
@@ -53,3 +77,25 @@ def get_urls(text):
 # function to find no. of urls
 def get_url_count(lst):
     return len(lst) 
+
+# function to create a graph of Emojis
+def create_emoji_graph(df):
+    total_emojis_list = list(set([a for b in df.emoji for a in b]))
+    total_emojis_list = list([a for b in df.emoji for a in b])
+    emoji_dict = dict(collections.Counter(total_emojis_list))
+    emoji_dict = sorted(emoji_dict.items(), key=lambda x: x[1], reverse=True)
+    emoji_df = pd.DataFrame(emoji_dict, columns=['emoji', 'count'])
+    fig = px.pie(emoji_df, values='count', names='emoji')
+    fig.update_traces(textposition='inside', textinfo='percent+label')
+    return fig
+
+# function to create a WordCloud
+def create_wordcloud(df, user):
+    text = " ".join(review for review in df.Message)
+    stopwords = set(STOPWORDS)
+    wordcloud = WordCloud(stopwords=stopwords, background_color="white").generate(text)
+    plt.figure( figsize=(10,5))
+    plt.imshow(wordcloud, interpolation='bilinear')
+    plt.axis("off")
+    plt.title(f"{user}")
+    return plt
