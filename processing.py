@@ -1,6 +1,8 @@
 import re
 import pandas as pd
 import emoji
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import plotly.express as px
 import collections
@@ -98,4 +100,8 @@ def create_wordcloud(df, user):
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
     plt.title(f"{user}")
-    return plt
+    img = BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    plot_url = base64.b64encode(img.getvalue()).decode('utf8')
+    return plot_url

@@ -20,10 +20,27 @@ def home():
         total_media_messages = df[df["Message"]=='<Media omitted>'].shape[0]
         total_emojis = sum(df['emoji'].str.len())
         total_links = np.sum(df.urlcount)
-        return render_template('index.html', total_messages=total_messages, total_media_messages=total_media_messages, total_emojis=total_emojis, total_links=total_links)
+        media_messages_df, messages_df = get_data(df)
+        users = df['Author'].unique().tolist()
+        users_data = []
+        for i in range(len(users)):
+            req_df= messages_df[messages_df["Author"] == users[i]]
+            messages_sent = req_df.shape[0]
+            words_per_message = (np.sum(req_df['Word_Count']))/req_df.shape[0]
+            media = media_messages_df[media_messages_df['Author'] == users[i]].shape[0]
+            emojis = sum(req_df['emoji'].str.len())
+            links = sum(req_df["urlcount"])
+            dummy_df = messages_df[messages_df['Author'] == users[i]]
+            personal_wordcloud = create_wordcloud(dummy_df, users[i])
+            users_data.append([messages_sent, round(words_per_message, 2), media, emojis, links, personal_wordcloud])
+        emoji_graph = create_emoji_graph(messages_df)
+        emoji_graph = emoji_graph.to_html(full_html=False)
+        wordcloud = create_wordcloud(messages_df, "General")
+        return render_template('index.html', total_messages=total_messages, total_media_messages=total_media_messages, total_emojis=total_emojis, total_links=total_links, users_data=users_data, emoji_graph=emoji_graph, wordcloud=wordcloud)
 
 if __name__ == '__main__':
     app.run(debug=True)
+    # <img src="data:image/png;base64,{{ i[5] }}">
 
 # General Stats
 # print(f'Total Messages: {df.shape[0]}')
@@ -34,7 +51,7 @@ if __name__ == '__main__':
 # total_links = np.sum(df.urlcount)
 # print(f"Number of Link Shared: {total_links}")
 
-# # Individual Stats
+# Individual Stats
 # media_messages_df, messages_df = get_data(df)
 # users = df['Author'].unique().tolist()
 # for i in range(len(users)):
