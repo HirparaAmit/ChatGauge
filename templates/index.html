@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="static/style.css">
-    <title>ChatGauge</title>
-</head>
-<body>
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="static/style.css">
+      <title>ChatGauge</title>
+  </head>
+  <body>
     <div class="container">
       <header>
         <h1>ChatGauge</h1>
         <p>Transform Your WhatsApp <i class="fa fa-whatsapp"></i> Conversations into Insightful Overviews!</p>
       </header>
       <div class="upload-area">
-        <button id="upload-btn" class="upload-btn" onclick="uploadFile()">Upload Conversation File</button>
+        <form id="form" action="/" method="post" enctype="multipart/form-data">
+          <label for="file-upload" class="upload-btn" id="upload-btn">
+            <input id="file-upload" type="file" name="file" onchange="submitForm()" accept=".txt"/>
+            Upload WhatsApp Conversation
+          </label>
+        </form>
         <div class="loader" id="loader"></div>
-      </div>
-      <div>
-        {{msg}}
       </div>
       <footer>
         <p>&copy; ChatGauge 2023 - Made by Amit Hirpara </p>
@@ -27,6 +29,12 @@
       </footer>
     </div>
 
-    <script src="static/index.js"></script>
-    </body>
+    <script>
+      function submitForm() {
+        document.getElementById('form').submit();
+        document.getElementById('upload-btn').style.display = 'none';
+        document.getElementById('loader').style.display = 'block';
+    }
+    </script>
+  </body>
 </html>

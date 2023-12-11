@@ -37,6 +37,10 @@ header p {
     justify-content: center;
 }
 
+#file-upload{
+    display: none;
+}
+
 .upload-btn {
     background-color: #25D366;
     color: #fff;
@@ -46,7 +50,6 @@ header p {
     cursor: pointer;
     border-radius: 12px;
     margin-bottom: 10px;
-    font-weight: bold;
 }
 
 .upload-btn:hover {

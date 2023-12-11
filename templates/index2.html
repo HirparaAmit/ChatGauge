@@ -1,11 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>{{total_messages}}</h1>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="static/style2.css">
+        <title>ChatGauge</title>
+    </head>
+    <body>
+        <div class="container">
+            <center>
+                <h1>Overview</h1>
+                <div class="total">
+                    <div class="box">
+                        <div class="number">{{total_messages}}</div>
+                        <div class="text">Messages ✉</div>
+                    </div>
+                    <div class="box">
+                        <div class="number">{{total_media_messages}}</div>
+                        <div class="text">Media Shared 📸</div>
+                    </div>
+                    <div class="box">
+                        <div class="number">{{total_emojis}}</div>
+                        <div class="text">Emoji Used 😀</div>
+                    </div>
+                    <div class="box">
+                        <div class="number">{{total_links}}</div>
+                        <div class="text">Link Shared 🔗</div>
+                    </div>
+                </div>
+            </center>
+            {% for i in users_data %}
+                <center>
+                    <h2 class="user-name">{{i[0]}} 👇</h2>
+                    <div class="users">
+                        <div class="box">
+                            <div class="user-number">{{i[1]}}</div>
+                            <div class="text">Messages Sent 📤</div>
+                        </div>
+                        <div class="box">
+                            <div class="user-number">{{i[2]}}</div>
+                            <div class="text">Words per Message 🗨️</div>
+                        </div>
+                        <div class="box">
+                            <div class="user-number">{{i[3]}}</div>
+                            <div class="text">Media Sent 📸</div>
+                        </div>
+                        <div class="box">
+                            <div class="user-number">{{i[4]}}</div>
+                            <div class="text">Emoji Used 😀</div>
+                        </div>
+                        <div class="box">
+                            <div class="user-number">{{i[5]}}</div>
+                            <div class="text">Link Sent 🔗</div>
+                        </div>
+                    </div>
+                </center>
+            {% endfor %}
+            <center>
+                <div class="emoji">
+                    <h2 class="user-name">Frequent Used Emojis 🤩</h2>
+                    <div id="emoji-graph">{{ emoji_graph|safe }}</div>
+                </div>
+            </center>
+            <footer>
+                <p>&copy; ChatGauge 2023 - Made by Amit Hirpara </p>
+                <a href="https://github.com/HirparaAmit"><i class="fa fa-github"></i></a>
+            </footer>
+        </div>
+    </body>
 </html>

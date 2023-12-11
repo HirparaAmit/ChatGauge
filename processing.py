@@ -89,6 +89,7 @@ def create_emoji_graph(df):
     emoji_df = pd.DataFrame(emoji_dict, columns=['emoji', 'count'])
     fig = px.pie(emoji_df, values='count', names='emoji')
     fig.update_traces(textposition='inside', textinfo='percent+label')
+    fig = fig.to_html(full_html=False)
     return fig
 
 # function to create a WordCloud
