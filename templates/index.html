@@ -3,13 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/style.css">
     <title>ChatGauge</title>
 </head>
 <body>
-    <form action="/" method="post" enctype="multipart/form-data">
-        <label for="inp_file">Upload Text File of WhatsApp Chat</label>
-        <input type="file" id="inp_file" name="inp_file" accept=".txt">
-        <input type="submit" value="Upload">
-    </form>
-</body>
+    <div class="container">
+      <header>
+        <h1>ChatGauge</h1>
+        <p>Transform Your WhatsApp <i class="fa fa-whatsapp"></i> Conversations into Insightful Overviews!</p>
+      </header>
+      <div class="upload-area">
+        <button id="upload-btn" class="upload-btn" onclick="uploadFile()">Upload Conversation File</button>
+        <div class="loader" id="loader"></div>
+      </div>
+      <div>
+        {{msg}}
+      </div>
+      <footer>
+        <p>&copy; ChatGauge 2023 - Made by Amit Hirpara </p>
+        <a href="https://github.com/HirparaAmit"><i class="fa fa-github"></i></a>
+      </footer>
+    </div>
+
+    <script src="static/index.js"></script>
+    </body>
 </html>
