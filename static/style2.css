@@ -60,7 +60,13 @@ body{
     margin-bottom: 5%;
 }
 
-.emoji{
+.general-graphs{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.graph{
     background-color: #fff;
     width: 39%;
     max-width: 1200px;

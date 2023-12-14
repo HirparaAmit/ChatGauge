@@ -59,9 +59,15 @@
                 </center>
             {% endfor %}
             <center>
-                <div class="emoji">
-                    <h2 class="user-name">Frequent Used Emojis 🤩</h2>
-                    <div id="emoji-graph">{{ emoji_graph|safe }}</div>
+                <div class="general-graphs">
+                    <div class="graph">
+                        <h2 class="user-name">Frequently Used Emojis 🤩</h2>
+                        <div id="emoji-graph">{{ emoji_graph|safe }}</div>
+                    </div>
+                    <div class="graph">
+                        <h2 class="user-name">Frequently Used Words 🔥</h2>
+                        <img src="data:image/png;base64,{{ wordcloud }}" style="width: 500px; height: 500px;">
+                    </div>
                 </div>
             </center>
             <footer>
