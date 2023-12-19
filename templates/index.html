@@ -1,40 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="static/style.css">
-      <title>ChatGauge</title>
-  </head>
-  <body>
-    <div class="container">
-      <header>
-        <h1>ChatGauge</h1>
-        <p>Transform Your WhatsApp <i class="fa fa-whatsapp"></i> Conversations into Insightful Overviews!</p>
-      </header>
-      <div class="upload-area">
-        <form id="form" action="/" method="post" enctype="multipart/form-data">
-          <label for="file-upload" class="upload-btn" id="upload-btn">
-            <input id="file-upload" type="file" name="file" onchange="submitForm()" accept=".txt"/>
-            Upload WhatsApp Conversation
-          </label>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/style.css">
+    <title>ChatGauge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="">
+    <div class="pt-[70px] text-center items-center justify-center">
+        <header>
+            <h1 class="text-center font-extrabold text-[25px] sm:text-[35px] text-[#333]">ChatGauge</h1>
+            <p class="text-center mt-3 text-[#666]">Transform Your WhatsApp <i class="fa fa-whatsapp text-[green] text-lg"></i> Conversations into Insightful Overviews!</p>
+        </header>
+        <form action="/" id="form" class="mt-6 flex justify-center items-center" enctype="multipart/form-data" method="post">
+            <label for="file-upload" id="upload-btn" class="text-white bg-green-500 px-2 sm:px-12 py-6 rounded-xl hover:bg-green-600 hover:cursor-pointer active:bg-green-800">
+                <input type="file" name="file" id="file-upload" class="hidden" onchange="submitForm()" accept=".txt"/>
+                Upload WhatsApp Conversation
+            </label>
+            <div class="loader" id="loader"></div>
         </form>
-        <div class="loader" id="loader"></div>
-      </div>
-      <footer>
-        <p>&copy; ChatGauge 2023 - Made by Amit Hirpara </p>
-        <a href="https://github.com/HirparaAmit"><i class="fa fa-github"></i></a>
-      </footer>
     </div>
-
+    <footer class="text-center justify-center block sm:flex absolute w-full bottom-0">
+        <p>&copy; ChatGauge 2023 - Made by</p> <p>&nbsp; Amit Hirpara <a href="https://github.com/HirparaAmit"><i class="fa fa-github"></i></a></p>
+    </footer>
     <script>
-      function submitForm() {
-        document.getElementById('form').submit();
-        document.getElementById('upload-btn').style.display = 'none';
-        document.getElementById('loader').style.display = 'block';
-    }
+        function submitForm() {
+          document.getElementById('form').submit();
+          document.getElementById('upload-btn').style.display = 'none';
+          document.getElementById('loader').style.display = 'block';
+      }
     </script>
-  </body>
+</body>
 </html>
