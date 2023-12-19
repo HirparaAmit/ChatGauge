@@ -37,10 +37,10 @@ def home():
                 emojis = sum(req_df['emoji'].str.len())
                 links = sum(req_df["urlcount"])
                 dummy_df = messages_df[messages_df['Author'] == users[i]]
-                personal_wordcloud = create_wordcloud(dummy_df, users[i])
+                personal_wordcloud = create_wordcloud(dummy_df)
                 users_data.append([users[i], messages_sent, round(words_per_message, 2), media, emojis, links, personal_wordcloud])
             emoji_graph = create_emoji_graph(messages_df)
-            wordcloud = create_wordcloud(messages_df, "General")
+            wordcloud = create_wordcloud(messages_df)
             return render_template('index2.html', total_messages=total_messages, total_media_messages=total_media_messages, total_emojis=total_emojis, total_links=total_links, users_data=users_data, emoji_graph=emoji_graph, wordcloud=wordcloud)
 
 if __name__ == '__main__':

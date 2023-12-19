@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="static/style2.css">
     <title>ChatGauge</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -14,56 +15,69 @@
             <h1 class="mt-6 text-[#333] text-[30px] sm:text-[35px] font-bold">Overview</h1>
             <div class="mt-4 grid grid-cols-1 w-7/12 sm:w-11/12 sm:grid-cols-4 sm:gap-[15px] 2xl:gap-[25px]">
                 <div class="bg-[#e0e0e0] mb-3 sm:m-0 border h-auto sm:h-[100px] md:h-[120px] lg:h-[140px] border-solid border-gray-300 rounded-md justify-center items-center text-center bg-opacity-25 shadow-md sm:shadow-lg backdrop-blur-md border-opacity-50">
-                    <div class="text-[35px] sm:text-[40px] md:text-[50px] lg:text-[60px]">2589</div>
+                    <div class="text-[35px] sm:text-[40px] md:text-[50px] lg:text-[60px]">{{total_messages}}</div>
                     <div>Messages ✉</div>
                 </div>
                 <div class="bg-[#e0e0e0] mb-3 sm:m-0 border h-auto sm:h-[100px] md:h-[120px] lg:h-[140px] border-solid border-gray-300 rounded-md justify-center items-center text-center bg-opacity-25 shadow-md sm:shadow-lg backdrop-blur-md border-opacity-50">
-                    <div class="text-[35px] sm:text-[40px] md:text-[50px] lg:text-[60px]">2589</div>
+                    <div class="text-[35px] sm:text-[40px] md:text-[50px] lg:text-[60px]">{{total_media_messages}}</div>
                     <div>Media Shared 📸</div>
                 </div>
                 <div class="bg-[#e0e0e0] mb-3 sm:m-0 border h-auto sm:h-[100px] md:h-[120px] lg:h-[140px] border-solid border-gray-300 rounded-md justify-center items-center text-center bg-opacity-25 shadow-md sm:shadow-lg backdrop-blur-md border-opacity-50">
-                    <div class="text-[35px] sm:text-[40px] md:text-[50px] lg:text-[60px]">2589</div>
+                    <div class="text-[35px] sm:text-[40px] md:text-[50px] lg:text-[60px]">{{total_emojis}}</div>
                     <div>Emoji Used 😀</div>
                 </div>
                 <div class="bg-[#e0e0e0] mb-3 sm:m-0 border h-auto sm:h-[100px] md:h-[120px] lg:h-[140px] border-solid border-gray-300 rounded-md justify-center items-center text-center bg-opacity-25 shadow-md sm:shadow-lg backdrop-blur-md border-opacity-50">
-                    <div class="text-[35px] sm:text-[40px] md:text-[50px] lg:text-[60px]">2589</div>
+                    <div class="text-[35px] sm:text-[40px] md:text-[50px] lg:text-[60px]">{{total_links}}</div>
                     <div>Link Shared 🔗</div>
                 </div>
             </div>
         </center>
-        {% for i in users_data %}
-            <center>
-                <h2 class="mt-5 sm:mt-10 text-[23px] sm:text-[28px] font-bold">{{i[0]}} 👇</h2>
-                <div class="mt-4 grid grid-cols-1 w-7/12 sm:w-11/12 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 sm:gap-[15px] 2xl:gap-[25px]">
-                    <div class="bg-[#e0e0e0] mb-3 sm:m-0 border h-auto sm:h-[90px] md:h-[110px] lg:h-[130px] border-solid border-gray-300 rounded-md justify-center items-center text-center bg-opacity-25 shadow-md sm:shadow-lg backdrop-blur-md border-opacity-50">
-                        <div class="text-[25px] sm:text-[30px] md:text-[40px] lg:text-[50px]">{{i[1]}}</div>
-                        <div>Messages Sent 📤</div>
-                    </div>
-                    <div class="bg-[#e0e0e0] mb-3 sm:m-0 border h-auto sm:h-[90px] md:h-[110px] lg:h-[130px] border-solid border-gray-300 rounded-md justify-center items-center text-center bg-opacity-25 shadow-md sm:shadow-lg backdrop-blur-md border-opacity-50">
-                        <div class="text-[25px] sm:text-[30px] md:text-[40px] lg:text-[50px]">{{i[2]}}</div>
-                        <div>Words per Message 🗨️</div>
-                    </div>
-                    <div class="bg-[#e0e0e0] mb-3 sm:m-0 border h-auto sm:h-[90px] md:h-[110px] lg:h-[130px] border-solid border-gray-300 rounded-md justify-center items-center text-center bg-opacity-25 shadow-md sm:shadow-lg backdrop-blur-md border-opacity-50">
-                        <div class="text-[25px] sm:text-[30px] md:text-[40px] lg:text-[50px]">{{i[3]}}</div>
-                        <div>Media Sent 📸</div>
-                    </div>
-                    <div class="bg-[#e0e0e0] mb-3 sm:m-0 border h-auto sm:h-[90px] md:h-[110px] lg:h-[130px] border-solid border-gray-300 rounded-md justify-center items-center text-center bg-opacity-25 shadow-md sm:shadow-lg backdrop-blur-md border-opacity-50">
-                        <div class="text-[25px] sm:text-[30px] md:text-[40px] lg:text-[50px]">{{i[4]}}</div>
-                        <div>Emoji Used 😀</div>
-                    </div>
-                    <div class="bg-[#e0e0e0] mb-3 sm:m-0 border h-auto sm:h-[90px] md:h-[110px] lg:h-[130px] border-solid border-gray-300 rounded-md justify-center items-center text-center bg-opacity-25 shadow-md sm:shadow-lg backdrop-blur-md border-opacity-50">
-                        <div class="text-[25px] sm:text-[30px] md:text-[40px] lg:text-[50px]">{{i[5]}}</div>
-                        <div>Link Sent 🔗</div>
-                    </div>
-                </div>
-            </center>
-        {% endfor %}
+        <div class="mt-8 sm:mt-12">
+            {% for i in users_data %}
+                <center>
+                        <div class="mb-3 sm:mb-6">
+                            <h2 class="text-[20px]  sm:text-[28px] font-bold sm:font-medium">Member: {{i[0]}} 👇</h2>
+                            <div class="mt-4 grid grid-cols-1 w-7/12 sm:w-11/12 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 sm:gap-[15px] 2xl:gap-[25px]">
+                                <div class="bg-[#e0e0e0] mb-3 sm:m-0 border h-auto sm:h-[90px] md:h-[110px] lg:h-[130px] border-solid border-gray-300 rounded-md justify-center items-center text-center bg-opacity-25 shadow-md sm:shadow-lg backdrop-blur-md border-opacity-50">
+                                    <div class="text-[25px] sm:text-[30px] md:text-[40px] lg:text-[50px]">{{i[1]}}</div>
+                                    <div>Messages Sent 📤</div>
+                                </div>
+                                <div class="bg-[#e0e0e0] mb-3 sm:m-0 border h-auto sm:h-[90px] md:h-[110px] lg:h-[130px] border-solid border-gray-300 rounded-md justify-center items-center text-center bg-opacity-25 shadow-md sm:shadow-lg backdrop-blur-md border-opacity-50">
+                                    <div class="text-[25px] sm:text-[30px] md:text-[40px] lg:text-[50px]">{{i[2]}}</div>
+                                    <div>Words per Message 💬</div>
+                                </div>
+                                <div class="bg-[#e0e0e0] mb-3 sm:m-0 border h-auto sm:h-[90px] md:h-[110px] lg:h-[130px] border-solid border-gray-300 rounded-md justify-center items-center text-center bg-opacity-25 shadow-md sm:shadow-lg backdrop-blur-md border-opacity-50">
+                                    <div class="text-[25px] sm:text-[30px] md:text-[40px] lg:text-[50px]">{{i[3]}}</div>
+                                    <div>Media Sent 📸</div>
+                                </div>
+                                <div class="bg-[#e0e0e0] mb-3 sm:m-0 border h-auto sm:h-[90px] md:h-[110px] lg:h-[130px] border-solid border-gray-300 rounded-md justify-center items-center text-center bg-opacity-25 shadow-md sm:shadow-lg backdrop-blur-md border-opacity-50">
+                                    <div class="text-[25px] sm:text-[30px] md:text-[40px] lg:text-[50px]">{{i[4]}}</div>
+                                    <div>Emoji Used 😀</div>
+                                </div>
+                                <div class="bg-[#e0e0e0] mb-3 sm:m-0 border h-auto sm:h-[90px] md:h-[110px] lg:h-[130px] border-solid border-gray-300 rounded-md justify-center items-center text-center bg-opacity-25 shadow-md sm:shadow-lg backdrop-blur-md border-opacity-50">
+                                    <div class="text-[25px] sm:text-[30px] md:text-[40px] lg:text-[50px]">{{i[5]}}</div>
+                                    <div>Link Sent 🔗</div>
+                                </div>
+                            </div>
+                        </div>
+                </center>
+            {% endfor %}
+        </div>
         <center>
-            <div>
-                <h2 class="mt-5 sm:mt-10 text-[23px] sm:text-[28px] font-bold">Frequently Used Emojis 🤩</h2>
-                <div>{{ emoji_graph|safe }}</div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 mt-8 sm:mt-12">
+                <div>
+                    <h2 class="text-[20px] sm:text-[28px] font-bold sm:font-medium">Frequently Used Emojis 🤩</h2>
+                    <div>{{ emoji_graph|safe }}</div>
+                </div>
+                <div>
+                    <h2 class="text-[20px] sm:text-[28px] font-bold sm:font-medium">Frequently Used Words 🔠</h2>
+                    <img src="data:image/png;base64,{{ wordcloud }}">
+                </div>
             </div>
         </center>
     </div>
+    <footer class="text-center justify-center block relative sm:flex w-full">
+        <p>&copy; ChatGauge 2023 - Made by</p> <p>&nbsp; Amit Hirpara <a href="https://github.com/HirparaAmit"><i class="fa fa-github"></i></a></p>
+    </footer>
 </body>
 </html>

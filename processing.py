@@ -93,14 +93,13 @@ def create_emoji_graph(df):
     return fig
 
 # function to create a WordCloud
-def create_wordcloud(df, user):
+def create_wordcloud(df):
     text = " ".join(review for review in df.Message)
     stopwords = set(STOPWORDS)
     wordcloud = WordCloud(stopwords=stopwords, background_color="white").generate(text)
     plt.figure( figsize=(10,5))
     plt.imshow(wordcloud, interpolation='bilinear')
     plt.axis("off")
-    plt.title(f"{user}")
     img = BytesIO()
     plt.savefig(img, format='png')
     img.seek(0)
