@@ -6,6 +6,7 @@ cycler==0.12.1
 emoji==2.9.0
 Flask==3.0.0
 fonttools==4.46.0
+gunicorn==21.2.0
 importlib-metadata==7.0.0
 importlib-resources==6.1.1
 itsdangerous==2.1.2
