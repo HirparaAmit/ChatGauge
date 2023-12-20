@@ -21,7 +21,7 @@ def home():
         if file:
             filename = file.filename
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            df = prepare_df(f'./uploads/{filename}')
+            df = prepare_df(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             total_messages = df.shape[0]
             total_media_messages = df[df["Message"]=='<Media omitted>'].shape[0]
             total_emojis = sum(df['emoji'].str.len())
@@ -42,7 +42,7 @@ def home():
             users_data = sorted(users_data, key=lambda x: x[1], reverse=True)
             emoji_graph = create_emoji_graph(messages_df)
             wordcloud = create_wordcloud(messages_df)
-            os.remove(f'./uploads/{filename}')
+            os.remove(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return render_template('index2.html', total_messages=total_messages, total_media_messages=total_media_messages, total_emojis=total_emojis, total_links=total_links, users_data=users_data, emoji_graph=emoji_graph, wordcloud=wordcloud)
 
 if __name__ == '__main__':
